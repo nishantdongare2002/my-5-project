@@ -7,11 +7,16 @@
     font-family: "Roboto Mono", monospace;
 }
 
+body {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    background-color: #050505;
+}
+
 .main {
     min-height: 100vh;
     position: relative;
     width: 100%;
-    background: #000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,31 +25,66 @@
 
 .main .image-container {
     padding: 10px;
+    margin-bottom: 20px;
 }
 
+/* ARC REACTOR RING - Outer */
 .main .image-container .image {
-    width: 100%;
+    position: relative;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.2);
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.main .image-container .image::before {
+    content: '';
+    position: absolute;
+    top: -15px; left: -15px; right: -15px; bottom: -15px;
+    border: 3px solid transparent;
+    border-top: 3px solid #00bcd4;
+    border-bottom: 3px solid #00bcd4;
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+    box-shadow: 0 0 15px #00bcd4;
+}
+
+/* ARC REACTOR RING - Inner */
+.main .image-container .image::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border: 2px solid transparent;
+    border-left: 2px solid rgba(0, 188, 212, 0.5);
+    border-right: 2px solid rgba(0, 188, 212, 0.5);
+    border-radius: 50%;
+    animation: spin-reverse 5s linear infinite;
+}
+
 .main .image-container .image img {
     width: 350px;
-    align-items: center;
+    border-radius: 50%;
 }
 
 .main .image-container h1 {
     color: #00bcd4;
     text-align: center;
+    margin-top: 25px;
     margin-bottom: 10px;
     font-size: 40px;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px #00bcd4;
 }
 
 .main .image-container p {
-    color: #324042;
+    color: #aed0d0;
     text-align: center;
-    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .main .input {
@@ -53,8 +93,15 @@
     align-items: center;
     width: 40vw;
     height: 50px;
-    border-radius: 20px;
-    background: rgb(202 253 255 / 50%);
+    border-radius: 5px;
+    background: rgba(0, 20, 30, 0.6);
+    border: 1px solid #00bcd4;
+    box-shadow: 0 0 15px #00bcd4, inset 0 0 10px #00bcd4;
+    transition: all 0.3s ease;
+}
+
+.main .input:hover {
+    box-shadow: 0 0 25px #00bcd4, inset 0 0 15px #00bcd4;
 }
 
 .main .input .talk {
@@ -73,10 +120,29 @@
 .main .input .talk i {
     font-size: 20px;
     color: #aed0d0;
+    transition: color 0.3s;
+}
+
+.main .input .talk:hover i {
+    color: #ffffff;
+    text-shadow: 0 0 5px #fff;
 }
 
 .main .input .content {
     color: #aed0d0;
     font-size: 15px;
     margin-right: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
 }
